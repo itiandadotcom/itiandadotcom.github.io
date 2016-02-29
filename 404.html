@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Not Found</title>
+    <style>
+        html, body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        @keyframes rotate
+        {
+            from {
+                transform: rotate(-10deg);
+            }
+            to {
+                transform: rotate(10deg);
+            }
+        }
+        div {
+            width: 400px;
+            margin: auto;
+            text-align: center;
+            font-weight: bold;
+            -webkit-filter: blur(2px);
+        }
+        img {
+            animation: rotate 0.3s infinite alternate linear;
+        }
+        a {
+            text-decoration: none;
+            transition: color 1s;
+        }
+        a:hover {
+            font-size: 2em;
+            transition: color 1s;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="./404/404.png">
+        <p><a href="javascript:history.go(-1);">Back</a> / <a href="/">Home</a> / <a href="mailto:me@itianda.com">Contact</a></p>
+    </div>
+</body>
+</html>
