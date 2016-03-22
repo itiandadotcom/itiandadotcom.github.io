@@ -70,6 +70,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Build-Node-js-native-addons-without-installing-Visual-Studio" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/" class="article-date">
+  <time datetime="2016-03-22T13:06:28.000Z" itemprop="datePublished">2016-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/">Build Node.js native addons without installing Visual Studio</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。</p>
+<p>在Windows上编译native模块需要VC++编译器，然而并不需要安装整个Visual Studio，微软良心的提供了<a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">多个版本的VC++编译器</a>。</p>
+<ol>
+<li><p>首先下载<a href="https://www.microsoft.com/download/details.aspx?id=49983" target="_blank" rel="external">Microsoft Visual C++ Build Tools 2015</a>，一定要同时安装Win10的SDK。</p>
+</li>
+<li><p>设置环境变量<code>GYP_MSVS_VERSION=2015</code>或执行<code>npm config set msvs_version 2015 --global</code>，再或者<code>npm install nslog --msvs_version=2015</code>也行。</p>
+</li>
+<li><p>打开<code>%LOCALAPPDATA%\Microsoft\MSBuild\v4.0\Microsoft.Cpp.x64.user.props</code>这个文件，加入以下内容（这是64位编译的配置方法，32位同理）：</p>
+<pre><code>&lt;PropertyGroup&gt;
+    &lt;IncludePath&gt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt;$(IncludePath)&lt;/IncludePath&gt;
+    &lt;LibraryPath&gt;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10150.0\ucrt\x64;$(LibraryPath)&lt;/LibraryPath&gt;
+&lt;/PropertyGroup&gt;
+</code></pre></li>
+</ol>
+<p>Enjoy it！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a href="http://itianda.com/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Electron/">Electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Native-Addon/">Native Addon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Hard-to-Stamp" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/03/14/Hard-to-Stamp/" class="article-date">
@@ -208,7 +262,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Electron/">Electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Native-Addon/">Native Addon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a></li></ul>
     </div>
   </div>
 
@@ -218,7 +272,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AlphaGo/" style="font-size: 10px;">AlphaGo</a>
+      <a href="/tags/AlphaGo/" style="font-size: 10px;">AlphaGo</a> <a href="/tags/Electron/" style="font-size: 10px;">Electron</a> <a href="/tags/Native-Addon/" style="font-size: 10px;">Native Addon</a> <a href="/tags/Node-js/" style="font-size: 10px;">Node.js</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a>
     </div>
   </div>
 
@@ -238,6 +292,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/">Build Node.js native addons without installing Visual Studio</a>
+          </li>
         
           <li>
             <a href="/2016/03/14/Hard-to-Stamp/">盖个章真难</a>

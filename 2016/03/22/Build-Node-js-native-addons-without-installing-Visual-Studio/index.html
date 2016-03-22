@@ -5,21 +5,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>AlphaGo vs 李世石：客观 vs 主观 | itianda&#39;s Blog</title>
+  <title>Build Node.js native addons without installing Visual Studio | itianda&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AlphaGo的棋路遵照事实，李世石的棋路遵照所谓真理（前人总结的规律+自己领悟）。
-客观PK主观，结果一目了然。">
+  <meta name="description" content="最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。
+在Windows上编译native模块需要VC++编译器，然而并不需要安装整个Visual Studio，微软良心的提供了多个版本的VC++编译器。
+
+首先下载Microsoft Visual C++ Build Tools 2015，一定要同时安装Win10的SDK。
+
+设置环境变量GYP_MSV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AlphaGo vs 李世石：客观 vs 主观">
-<meta property="og:url" content="http://itianda.com/2016/03/10/AlphaGo-vs-Lee/index.html">
+<meta property="og:title" content="Build Node.js native addons without installing Visual Studio">
+<meta property="og:url" content="http://itianda.com/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/index.html">
 <meta property="og:site_name" content="itianda's Blog">
-<meta property="og:description" content="AlphaGo的棋路遵照事实，李世石的棋路遵照所谓真理（前人总结的规律+自己领悟）。
-客观PK主观，结果一目了然。">
-<meta property="og:updated_time" content="2016-03-10T12:31:51.228Z">
+<meta property="og:description" content="最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。
+在Windows上编译native模块需要VC++编译器，然而并不需要安装整个Visual Studio，微软良心的提供了多个版本的VC++编译器。
+
+首先下载Microsoft Visual C++ Build Tools 2015，一定要同时安装Win10的SDK。
+
+设置环境变量GYP_MSV">
+<meta property="og:updated_time" content="2016-03-22T13:56:45.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AlphaGo vs 李世石：客观 vs 主观">
-<meta name="twitter:description" content="AlphaGo的棋路遵照事实，李世石的棋路遵照所谓真理（前人总结的规律+自己领悟）。
-客观PK主观，结果一目了然。">
+<meta name="twitter:title" content="Build Node.js native addons without installing Visual Studio">
+<meta name="twitter:description" content="最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。
+在Windows上编译native模块需要VC++编译器，然而并不需要安装整个Visual Studio，微软良心的提供了多个版本的VC++编译器。
+
+首先下载Microsoft Visual C++ Build Tools 2015，一定要同时安装Win10的SDK。
+
+设置环境变量GYP_MSV">
   
     <link rel="alternate" href="/atom.xml" title="itianda&#39;s Blog" type="application/atom+xml">
   
@@ -72,10 +84,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-AlphaGo-vs-Lee" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Build-Node-js-native-addons-without-installing-Visual-Studio" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/10/AlphaGo-vs-Lee/" class="article-date">
-  <time datetime="2016-03-10T12:29:32.000Z" itemprop="datePublished">2016-03-10</time>
+    <a href="/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/" class="article-date">
+  <time datetime="2016-03-22T13:06:28.000Z" itemprop="datePublished">2016-03-22</time>
 </a>
     
   </div>
@@ -86,7 +98,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AlphaGo vs 李世石：客观 vs 主观
+      Build Node.js native addons without installing Visual Studio
     </h1>
   
 
@@ -94,17 +106,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>AlphaGo的棋路遵照事实，李世石的棋路遵照所谓真理（前人总结的规律+自己领悟）。</p>
-<p>客观PK主观，结果一目了然。</p>
+        <p>最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。</p>
+<p>在Windows上编译native模块需要VC++编译器，然而并不需要安装整个Visual Studio，微软良心的提供了<a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">多个版本的VC++编译器</a>。</p>
+<ol>
+<li><p>首先下载<a href="https://www.microsoft.com/download/details.aspx?id=49983" target="_blank" rel="external">Microsoft Visual C++ Build Tools 2015</a>，一定要同时安装Win10的SDK。</p>
+</li>
+<li><p>设置环境变量<code>GYP_MSVS_VERSION=2015</code>或执行<code>npm config set msvs_version 2015 --global</code>，再或者<code>npm install nslog --msvs_version=2015</code>也行。</p>
+</li>
+<li><p>打开<code>%LOCALAPPDATA%\Microsoft\MSBuild\v4.0\Microsoft.Cpp.x64.user.props</code>这个文件，加入以下内容（这是64位编译的配置方法，32位同理）：</p>
+<pre><code>&lt;PropertyGroup&gt;
+    &lt;IncludePath&gt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.10150.0\ucrt;$(IncludePath)&lt;/IncludePath&gt;
+    &lt;LibraryPath&gt;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10150.0\ucrt\x64;$(LibraryPath)&lt;/LibraryPath&gt;
+&lt;/PropertyGroup&gt;
+</code></pre></li>
+</ol>
+<p>Enjoy it！</p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a href="http://itianda.com/2016/03/10/AlphaGo-vs-Lee/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://itianda.com/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Electron/">Electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Native-Addon/">Native Addon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a></li></ul>
 
     </footer>
   </div>
@@ -112,19 +137,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/14/Hard-to-Stamp/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          盖个章真难
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/02/28/New-Blog/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/03/14/Hard-to-Stamp/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">New Blog</div>
+      <div class="article-nav-title">盖个章真难</div>
     </a>
   
 </nav>
@@ -225,7 +241,7 @@
 <script>
   var disqus_shortname = 'itianda';
   
-  var disqus_url = 'http://itianda.com/2016/03/10/AlphaGo-vs-Lee/';
+  var disqus_url = 'http://itianda.com/2016/03/22/Build-Node-js-native-addons-without-installing-Visual-Studio/';
   
   (function(){
     var dsq = document.createElement('script');
