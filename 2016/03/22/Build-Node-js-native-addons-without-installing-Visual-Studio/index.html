@@ -23,7 +23,7 @@
 首先下载Microsoft Visual C++ Build Tools 2015，一定要同时安装Win10的SDK。
 
 设置环境变量GYP_MSV">
-<meta property="og:updated_time" content="2016-03-22T14:35:47.599Z">
+<meta property="og:updated_time" content="2016-11-28T05:49:33.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Node.js native addons without installing Visual Studio">
 <meta name="twitter:description" content="最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。
@@ -118,7 +118,7 @@ ga('send', 'pageview');
         <p>最近用Electron写程序，间接地需要编译某个native addon（node-nslog）。</p>
 <p>在Windows上编译native模块需要VC++编译器，然而并不需要安装整个Visual Studio，微软良心的提供了<a href="https://wiki.python.org/moin/WindowsCompilers" target="_blank" rel="external">多个版本的VC++编译器</a>。</p>
 <ol>
-<li><p>首先下载<a href="https://www.microsoft.com/download/details.aspx?id=49983" target="_blank" rel="external">Microsoft Visual C++ Build Tools 2015</a>，一定要同时安装Win10的SDK。</p>
+<li><p>首先下载<a href="http://landinghub.visualstudio.com/visual-cpp-build-tools" target="_blank" rel="external">Microsoft Visual C++ Build Tools 2015</a>，一定要同时安装Win10的SDK。</p>
 </li>
 <li><p>设置环境变量<code>GYP_MSVS_VERSION=2015</code>或执行<code>npm config set msvs_version 2015 --global</code>，再或者<code>npm install nslog --msvs_version=2015</code>也行。</p>
 </li>
@@ -130,6 +130,8 @@ ga('send', 'pageview');
 </code></pre></li>
 </ol>
 <p>Enjoy it！</p>
+<hr>
+<p>2016.11.28 修复链接。</p>
 
       
     </div>
