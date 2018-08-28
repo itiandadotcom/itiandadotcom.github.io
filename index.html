@@ -225,7 +225,7 @@ ARG FCFLAGS=&quot;-O3 -no-prec-div -fp-model fast=2 -x${TARGET} -align array64by
         MPIF90=&quot;mpifort&quot; \
         CC=&quot;mpicc&quot; \
         CFLAGS=&quot;${CCFLAGS}&quot; \
-        FCFLAGS=&quot;${FCFLAGS} -I${MKLROOT}/include -I${MKLROOT}/include/fftw&quot; \
+        FFLAGS=&quot;${FCFLAGS} -I${MKLROOT}/include -I${MKLROOT}/include/fftw&quot; \
         LDFLAGS=&quot;-Wl,--start-group \
             ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a \
             ${MKLROOT}/lib/intel64/libmkl_core.a \
@@ -387,6 +387,8 @@ Read -1, expected ###, errno =1
 <li><p>Open MPI 禁止 root 用户直接调用，这会导致 QE 测试运行失败。建议创建新用户。</p>
 </li>
 </ol>
+<hr>
+<p>2018.08.28 修正配置 QE 时的参数<code>FCFLAGS=...</code>为<code>FFLAGS=...</code>。</p>
 
       
     </div>
